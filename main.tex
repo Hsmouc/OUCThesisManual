@@ -1,0 +1,462 @@
+\documentclass[zihao = -4,cn]{oucart}
+\newtheorem{theorem}{{定理}}[section]
+\newtheorem{proposition}{{命题}}[section]
+\newtheorem{lemma}{{引理}} [section]
+\newtheorem{corollary}{{推论}}[section]
+\newtheorem{definition}{{定义}} [section]
+\newtheorem{example}{{例}} [section]
+
+\title{\textcolor[rgb]{0,0.19607843,0.7372549}\LaTeX{}模版使用手册}
+\entitle{Handbook of OUC Undergraduate Thesis\\ \textcolor[rgb]{0,0.19607843,0.7372549}\LaTeX{}  Template}
+\author{作者名}
+\studentid{123456789}
+\advisor{指导教师名}
+\department{学院名}{专业年级}
+
+\cnabstractkeywords{
+ 此项目旨在建立一个简单易用的中国海洋大学本科毕业论文\LaTeX{}模版。
+}{
+中国海洋大学，\LaTeX{}
+}
+
+\begin{document}
+
+\makecover
+
+\thispagestyle{empty}
+\vspace{40mm}
+\begin{center}
+\heiti\zihao{3}{免责声明}
+\end{center}
+
+\begin{enumerate}\item 本模板的发布遵守The MIT License，使用前请认真阅读协议内容。\item 本模板为作者根据中国海洋大学教务处颁发的《中国海洋大学全日制本科毕业（设计）论文撰写规范》编写而成， 旨在供中国海洋大学本科毕业生撰写学位论文使用。\item 中国海洋大学教务处只提供毕业论文写作指南，不提供官方模板，也不会授权第三方模板为官方模板，所以此模板仅为写作指南的参考实现，不保证格式审查老师不提意见。任何由 于使用本模板而引起的论文格式审查问题均与本模板作者无关。\item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，请严格遵守协议The MIT License。由于违犯协议而引起的任何纠纷争端均与本模板作者无关。
+\end{enumerate}
+\newpage
+
+\makeabstract
+
+\thispagestyle{tableofcontents}  
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1} 
+% 正文内容
+% 建议使用 \input{<文件名>} 指令引用其他文件
+\section{模版介绍}
+此项目是基于\LaTeX{}排版系统的本科毕业论文模版，旨在帮助中国海洋大学的本科生快速完成毕业论文的排版工作。
+\section{安装}
+请根据你的操作系统选择对应的安装说明：
+\subsection{Windows}
+\begin{enumerate}
+	\item 安装MiKTeX最新版本，下载地址与安装方法：\href{https://miktex.org/howto/install-miktex}{MiKTeX}；
+	\item 下载毕业论文论文模版的最新发行版，下载地址：\href{https://github.com/OSOUC/UndergraduateThesisLaTeXTemplate/releases}{GitHub}；
+	\item 在项目所在目录下编译生成PDF文件：
+	\begin{itemize}
+		\item[*]  自动编译：make\footnote{需要安装MinGW编译器。}
+		\item[*]  手动编译：xelatex -> bibtex -> xelatex -> xelatex
+	\end{itemize}
+\end{enumerate}
+\subsection{macOS}
+\begin{enumerate}
+	\item 安装MacTeX，下载地址：\href{http://www.tug.org/mactex/}{MacTeX}；
+	\item 下载毕业论文论文模版的最新发行版，下载地址：\href{https://github.com/OSOUC/UndergraduateThesisLaTeXTemplate/releases}{GitHub}；
+	\item 修改项目文件：\ttfamily{oucart.cls}，\songti
+	将以下代码：
+	\begin{lstlisting}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+	\end{lstlisting}\zihao{-4}
+	更改为：
+		\begin{lstlisting}
+\setCJKmainfont[BoldFont=STHeiti,ItalicFont=STKaiti]{STSong}
+\setCJKsansfont[BoldFont=STHeiti]{STXihei}
+\setCJKmonofont{STFangsong}
+	\end{lstlisting}\zihao{-4} 
+	\item 在项目所在目录下编译生成\rmfamily{PDF} \songti 文件：
+	\begin{itemize}
+		\item[*]  自动编译：make
+		\item[*]  手动编译：xelatex -> bibtex -> xelatex -> xelatex
+	\end{itemize}
+\end{enumerate}
+\subsection{Linux}
+待完成
+\section{使用说明}
+\subsection{示例文件}
+模版包括封面、扉页、目录、中文摘要、英文摘要、正文、参考文献、致谢和附录，共9部分。以下是生成论文全部部分的示例代码，在论文的实际写作中只需要替换相应的部分即可：
+\begin{lstlisting}
+\documentclass[zihao = -4,cn]{oucart}
+\title{论文标题}
+\entitle{The Title of the Thesis}
+\author{作者名}
+\studentid{123456789}
+\advisor{指导教师名}
+\department{学院名}{专业年级}
+\cnabstractkeywords{
+ 这是中文摘要。 
+}{
+中文, 关键字
+}
+\enabstractkeywords{
+  This is an English abstract. 
+}{
+  English, Abstract
+}
+\begin{document}
+\makecover
+\makesignature
+\makeabstract
+\thispagestyle{tableofcontents}  
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1} 
+% 正文内容
+% 建议使用 \input{<文件名>} 指令引用其他文件
+\section{示例章节}
+\subsection{示例章节}
+\subsubsection{示例章节}
+正文\cite{wiki:ouc}. 
+\newpage
+\bibliography{main}
+
+\newpage
+\begin{center}
+\zihao{3} \textbf{致谢} \\
+\end{center}
+
+\newpage
+\begin{center}
+\zihao{3} \textbf{附录} \\
+\end{center}
+\end{document}
+\end{lstlisting}
+\subsection{格式设置} \zihao{-4}
+此模版按本科毕业论文格式规范制作，一般无需修改。若有模版格式与要求不一致的地方请根据以下说明进行修改：
+\subsubsection{页面设置}
+默认纸面为A4，页边距为上下2.54厘米，左右3厘米。页面设置在\ttfamily{oucart.cls} \songti 文件中，相关代码为：
+\begin{itemize}
+\item[*] 页面设置：
+\begin{lstlisting}
+\LoadClass[11pt,a4paper]{article}
+\end{lstlisting}
+\item[*] 页边距设置：
+\begin{lstlisting}
+\geometry{top=2.54cm,bottom=2.54cm,left=3cm,right=3cm} 
+\end{lstlisting}
+\end{itemize}
+\subsubsection{页眉、页脚}
+论文封面、扉页无页眉，中文摘要页页眉内容为摘要，英文摘要页页眉内容为Abstract，目录页页眉内容为目录，正文页页眉内容为论文题目，宋体居中。页码居中，正文页码为阿拉伯数字，摘要至目录页页码为大写罗马数字。页眉页脚的设置依赖\ttfamily{fancyhdr} \rmfamily \songti 宏包。正文以前部分的页眉样式设置代码如下：
+\begin{lstlisting}
+\fancypagestyle{zhabstract}{
+\chead{\small{摘\ \ \ 要}}
+}
+\fancypagestyle{enabstract}{
+\chead{\small{Abstract}}
+}
+\fancypagestyle{tableofcontents}{
+\chead{\small{目\ \ \ 录}}
+}
+\end{lstlisting}
+正文页眉设置为：
+\begin{lstlisting}
+\chead{\small{\@title}} % 页眉
+\end{lstlisting}
+以下代码用以设置页脚：
+\begin{lstlisting}
+\pagenumbering{Roman}  %大写罗马数字
+\pagenumbering{arabic}    %阿拉伯数字
+\end{lstlisting}
+
+\subsubsection{字体、字号}
+\begin{itemize}
+\item[*] 正文字体默认为宋体，字体修改请修改文件\ttfamily{oucart.cls} \songti  \rmfamily 文件中的：
+\begin{lstlisting}
+\setCJKmainfont[BoldFont=STHeiti,ItalicFont=STKaiti]{STSong}
+\end{lstlisting}
+\item[*] 正文字号默认为小四，字号修改请更改以下代码中的\ttfamily{zihao} \songti \rmfamily 参数：
+\begin{lstlisting}
+\documentclass[zihao = -4,cn]{oucart} 
+\end{lstlisting}
+\end{itemize}
+如需进行局部字号字体调整，可参考以下写法：
+\begin{lstlisting}
+\zihao{3} \heiti 三号黑体 \\
+\zihao{4} \songti 四号宋体 \\
+\zihao{5} \kaishu 五号楷书 \\
+\end{lstlisting}
+实现效果如下：\\
+\zihao{3} \heiti 三号黑体 \\
+\zihao{4} \songti 四号宋体 \\
+\zihao{5} \kaishu 五号楷书 \\
+\songti \zihao{-4}
+\subsubsection{行距}
+由于 \rmfamily \TeX{}行距计算方法与Microsoft Word存在差异，本模版中行距设置约相当于Microsoft Word中1.25倍行距。如需修改请更改\ttfamily{oucart.cls} \songti 文件中的：
+\begin{lstlisting}
+\linespread{1.35}
+\end{lstlisting}
+局部行距设置需要\ttfamily{setspace} \songti 宏包，示例用法为：
+\begin{lstlisting}
+\begin{spacing}{1.0}
+\noindent 单倍行距 \\
+单倍行距
+\end{spacing}
+\begin{spacing}{2.0}
+\noindent 双倍行距 \\
+双倍行距
+\end{spacing}
+\end{lstlisting}
+实现效果如下：\\
+\begin{spacing}{1.0}
+\noindent 单倍行距 \\
+单倍行距
+\end{spacing}
+\begin{spacing}{2.0}
+\noindent 双倍行距 \\
+双倍行距
+\end{spacing}
+
+\subsubsection{标题样式}
+默认标题分为三级，它们与字体字号有以下对应关系：
+\begin{itemize}
+\item[*] 一级标题为黑体三号；
+\item[*] 二级标题为黑体四号；
+\item[*] 三级标题为黑体四号。
+\end{itemize}
+标题以阿拉伯数字编号，其基本样式为：\\
+
+
+\noindent \zihao{3} \heiti{1. 一级标题} \\
+\zihao{4} \heiti{1.1 二级标题} \\
+\zihao{4} \heiti{1.1.1 三级标题} \\
+\zihao{-4} \songti 如需修改，请修改\ttfamily{oucart.cls} \rmfamily \songti 文件中如下代码：
+\begin{lstlisting}
+\titleformat{\section}
+            {\zihao{3}\heiti\raggedright}
+            {\arabic{section}.}{1em}
+            {}
+\titleformat{\subsection}
+            {\zihao{4}\heiti\raggedright}
+            {\arabic{section}.\arabic{subsection}}{1em}
+            {}
+\titleformat{\subsubsection}
+            {\zihao{4}\heiti\raggedright}
+            {\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1em}
+            {}
+\end{lstlisting}
+
+\subsubsection{参考文献样式}
+模版使用\BibTeX 管理参考文献，样式由\ttfamily{gbt7714.sty} \rmfamily \songti 指定，符合GB/T7714《文后参考文献著录规则》，样式示例\cite{wiki:ouc}。此样式来源于开源项目\href{https://github.com/zepinglee/gbt7714-bibtex-style}{GB/T 7714-2015 BibTeX Style}。\\
+若期望使用其他样式，请删去\ttfamily{oucart.sty} \rmfamily \songti 文件中的以下代码：
+\begin{lstlisting}
+\RequirePackage{assets/gbt7714}
+\end{lstlisting}
+并在\ttfamily{.tex} \rmfamily \songti 文件中指定参考文献样式，例如：
+\begin{lstlisting}
+\bibliographystyle{unsrt}
+\end{lstlisting}
+
+\subsection{部分格式参考}
+\subsubsection{图}
+模版统一设置的图、表标题字号为五号，字体为黑体。建议使用的图片格式为\ttfamily{.eps/.pdf} \rmfamily \songti ，以下是一些例子：\\
+\textbf{单张图片：}\\
+代码：
+\begin{lstlisting}
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width = 0.2\textwidth]{assets/logo}
+    \caption{中国海洋大学}
+    \label{fig:ouc1}
+\end{figure}
+\end{lstlisting}
+实现效果：
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width = 0.2\textwidth]{assets/logo}
+    \caption{中国海洋大学}
+    \label{fig:ouc1}
+\end{figure}
+
+\noindent \textbf{两张图片：}\\
+代码：
+\begin{lstlisting}
+\begin{figure}[hbp!] 
+\centering 
+\subfigure[\zihao{5}\heiti 海大]{ 
+    \label{fig:subfig:a} 
+    \includegraphics[width = 0.2\textwidth]{assets/logo}}
+    \hspace{0.1in} 
+\subfigure[\zihao{5}\heiti 海大]{ 
+    \label{fig:subfig:b} 
+    \includegraphics[width = 0.2\textwidth]{assets/logo}} 
+\caption{中国海洋大学} 
+\end{figure}
+\end{lstlisting}
+实现效果：
+\begin{figure}[hbp!] 
+\centering 
+\subfigure[\zihao{5}\heiti 海大]{ 
+    \label{fig:subfig:a} 
+    \includegraphics[width = 0.3\textwidth]{assets/logo}}
+    \hspace{0.1in} 
+\subfigure[\zihao{5}\heiti 海大]{ 
+    \label{fig:subfig:b} 
+    \includegraphics[width = 0.3\textwidth]{assets/logo}} 
+\caption{中国海洋大学} 
+\end{figure}
+\newpage
+\noindent \textbf{三张图片：}\\
+代码：
+\begin{lstlisting}
+\begin{figure}[!h]
+        \subfigure[\zihao{5}\heiti 海大]{
+        \includegraphics[width=0.3\textwidth]{assets/logo}}
+        \hspace{0.1in} 
+        \subfigure[\zihao{5}\heiti 海大]{
+        \includegraphics[width=0.3\textwidth]{assets/logo}}
+         \subfigure[\zihao{5}\heiti 海大]{
+         \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{assets/logo}
+	\end{minipage}}
+        \caption{中国海洋大学}
+\end{figure}
+\end{lstlisting}
+实现效果：
+\begin{figure}[!h]
+        \subfigure[\zihao{5}\heiti 海大]{
+        \includegraphics[width=0.4\textwidth]{assets/logo}}
+        \hspace{0.1in} 
+        \subfigure[\zihao{5}\heiti 海大]{
+        \includegraphics[width=0.4\textwidth]{assets/logo}}
+         \subfigure[\zihao{5}\heiti 海大]{
+         \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=0.4\textwidth]{assets/logo}
+	\end{minipage}}
+        \caption{中国海洋大学}
+\end{figure}
+
+\noindent \textbf{四张图片：}\\
+代码：
+\begin{lstlisting}
+\begin{figure}[!hbp] 
+\centering
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}\hfil
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}\hfil
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}
+	\caption{中国海洋大学}
+\end{figure}
+\end{lstlisting}
+实现效果：
+\begin{figure}[!hbp] 
+\centering
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}\hfil
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}\hfil
+	\subfigure[\zihao{5}\heiti 海大]{
+	\includegraphics[width = 0.4\textwidth]{assets/logo}
+	}
+	\caption{中国海洋大学}
+\end{figure}
+
+\subsubsection{表}
+一个基本的三线表可以用以下代码实现：
+\begin{lstlisting}
+\begin{table}[!htbp]
+\centering
+\caption{一个基本的三线表}
+\begin{minipage}[t]{350pt}
+\begin{tabular*}{350pt}{@{\extracolsep{\fill}}ccc}
+\toprule
+第一列 & 第二列 & 第三列 \\
+\midrule
+文字 & English & $\alpha^*$ \\
+文字 & English & $\beta$ \\
+文字 & English & $\gamma$\\
+\bottomrule
+\end{tabular*}
+\footnotesize
+数据来源：相关的数据来源。 \\
+*：表中需要解释的内容
+\end{minipage}
+\end{table}
+\end{lstlisting}
+实现效果：
+\begin{table}[!htbp]
+\centering
+\caption{一个基本的三线表}
+\begin{minipage}[t]{350pt}
+\begin{tabular*}{350pt}{@{\extracolsep{\fill}}ccc}
+\toprule
+第一列 & 第二列 & 第三列 \\
+\midrule
+文字 & English & $\alpha^*$ \\
+文字 & English & $\beta$ \\
+文字 & English & $\gamma$\\
+\bottomrule
+\end{tabular*}
+\footnotesize
+数据来源：相关的数据来源。 \\
+$*$：表中需要解释的内容
+\end{minipage}
+\end{table}
+
+\subsubsection{数学相关}
+\noindent 定理、引理等样式 \\
+将以下代码加入到导言区：
+\begin{lstlisting}
+\newtheorem{theorem}{{定理}}[section]
+\newtheorem{proposition}{{命题}}[section]
+\newtheorem{lemma}{{引理}} [section]
+\newtheorem{corollary}{{推论}}[section]
+\newtheorem{definition}{{定义}} [section]
+\newtheorem{example}{{例}} [section]
+\end{lstlisting}
+使用代码实例：
+\begin{lstlisting}
+\begin{theorem} 这是定理。\end{theorem}
+\begin{proposition} 这是命题。\end{proposition}
+\begin{lemma} 这是引理。\end{lemma}
+\begin{corollary}这是推论。 \end{corollary}
+\begin{definition} 这是定义。\end{definition}
+\end{lstlisting}
+效果如下：
+\begin{theorem} 这是定理。\end{theorem}
+\begin{proposition} 这是命题。\end{proposition}
+\begin{lemma} 这是引理。\end{lemma}
+\begin{corollary}这是推论。 \end{corollary}
+\begin{definition} 这是定义。\end{definition}
+
+公式：
+\begin{equation}
+ \lim_{x\to 0}{\frac{e^x-1}{2x}}
+ \overset{\left[\frac{0}{0}\right]}{\underset{\mathrm{H}}{=}}
+ \lim_{x\to 0}{\frac{e^x}{2}}={\frac{1}{2}}
+\end{equation}
+\section{修改记录}
+\begin{itemize}
+\item May,20 2015 \LaTeX{}模版v0.1；
+\item May,20 2018 \LaTeX{}模版v0.2，\LaTeX{}使用手册第一版。
+\end{itemize}
+
+\newpage
+\bibliography{main}
+
+\end{document}

@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{assets/cover}[2015/05/20 Cover Page]
+
+%% Require title, author, studentid, advisor, college, department. 
+
+\newcommand*{\makecover}{
+  \begin{titlepage}
+    \begin{minipage}{50mm}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{25mm}
+      \includegraphics[width=1.5in]{assets/logo}
+    \end{minipage}
+    \vspace{20mm}\\
+    \centerline{\heiti\zihao{1}{中国海洋大学本科毕业论文}}
+
+
+    \vspace{15mm}
+    \centerline{\heiti\zihao{1}{\@title(第一版)}}
+
+
+    \vspace{25mm}
+    \begin{center}
+	\zihao{3}{\begin{tabular}{ll}
+	作者& OSOUC\\
+	联系方式& hsmouc@gmail.com\\
+	\end{tabular}}
+       \vspace{75mm}
+
+       \kaishu\zihao{-3}{中国海洋大学}
+    \end{center}
+  \end{titlepage}
+}
